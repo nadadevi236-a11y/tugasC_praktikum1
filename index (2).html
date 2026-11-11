@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catatan Cloud Computing - Nada Devi Meilani</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.6;
+    }
+    header {
+      background: #0f766e;
+      color: white;
+      padding: 28px 20px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 6px; font-size: 26px; }
+    header p { margin: 0; font-size: 14px; opacity: 0.9; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 20px; }
+    h2 { color: #0f766e; border-bottom: 2px solid #c5e0dc; padding-bottom: 4px; }
+    .box {
+      background: white;
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+    }
+    .box h3 { margin: 0 0 4px; font-size: 17px; }
+    .box p { margin: 0; font-size: 15px; }
+    ul { padding-left: 20px; }
+    button {
+      background: #0f766e;
+      color: white;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover { background: #115e59; }
+    #jam { font-weight: bold; }
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      padding: 20px;
+    }
+      body.gelap { background: #1b1f24; color: #e6e6e6; }
+    body.gelap .box { background: #262c33; border-color: #3a424b; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Catatan Praktikum Cloud Computing</h1>
+    <p>Nada Devi Meilani | 102042400172 | Kelas 2403</p>
+  </header>
+
+  <div class="wrap">
+
+    <h2>Apa itu Cloud Computing?</h2>
+    <p>
+      Cloud computing adalah cara memakai server, penyimpanan, dan layanan
+      komputer lewat internet, jadi kita tidak perlu beli dan merawat server
+      sendiri. Biaya biasanya mengikuti pemakaian.
+    </p>
+
+    <h2>Tiga Model Layanan</h2>
+    <div class="box">
+      <h3>IaaS (Infrastructure as a Service)</h3>
+      <p>Kita dapat infrastruktur dasarnya seperti virtual machine dan jaringan. Contoh: Azure Virtual Machines.</p>
+    </div>
+    <div class="box">
+      <h3>PaaS (Platform as a Service)</h3>
+      <p>Kita tinggal taruh aplikasi, urusan server dan sistem operasi dikelola penyedia. Contoh: Azure Static Web Apps, Vercel.</p>
+    </div>
+    <div class="box">
+      <h3>SaaS (Software as a Service)</h3>
+      <p>Aplikasi jadi yang langsung dipakai lewat browser. Contoh: Gmail, Google Docs.</p>
+    </div>
+
+    <h2>Yang Dikerjakan di Modul 1</h2>
+    <ul>
+      <li>Menjalankan file index.html di komputer sendiri</li>
+      <li>Membuat repository di GitHub dan mengunggah file</li>
+      <li>Menghubungkan GitHub ke Vercel lalu deploy</li>
+      <li>Membuka website lewat link yang sudah online</li>
+    </ul>
+
+    <h2>Tools yang Dipakai</h2>
+    <ul>
+      <li>Visual Studio Code untuk edit dan tes di lokal</li>
+      <li>GitHub untuk menyimpan kode</li>
+      <li>Vercel untuk hosting website</li>
+    </ul>
+
+    <h2>Update Versi 2.0</h2>
+    <p>Setelah file diubah di GitHub, Vercel otomatis deploy ulang tanpa perlu klik Deploy lagi. Ini yang disebut Continuous Deployment.</p>
+    <button onclick="gantiMode()">Mode gelap / terang</button>
+
+    <h2>Cek Halaman</h2>
+    <p>Waktu sekarang: <span id="jam">-</span></p>
+    <p>Alamat halaman ini: <span id="alamat">-</span></p>
+    <button onclick="cekHalaman()">Klik untuk cek</button>
+    <p id="hasil"></p>
+
+  </div>
+
+  <footer>Versi 2.0 - sudah diperbarui lewat GitHub (Continuous Deployment)</footer>
+
+  <script>
+    function gantiMode() {
+      document.body.classList.toggle("gelap");
+    }
+
+    // tampilkan jam yang jalan terus
+    function updateJam() {
+      var sekarang = new Date();
+      document.getElementById("jam").innerHTML = sekarang.toLocaleTimeString("id-ID");
+    }
+    updateJam();
+    setInterval(updateJam, 1000);
+
+    // kalau dibuka dari file lokal, alamatnya beda sama kalau udah di Vercel
+    document.getElementById("alamat").innerHTML = window.location.href;
+
+    function cekHalaman() {
+      var host = window.location.hostname;
+      if (host === "") {
+        document.getElementById("hasil").innerHTML = "Halaman ini masih jalan di komputer lokal.";
+      } else {
+        document.getElementById("hasil").innerHTML = "Halaman ini sudah online di: " + host;
+      }
+    }
+  </script>
+
+</body>
+</html>
